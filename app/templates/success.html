@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-light mb-4">Paiement Réussi</h1>
+    <div class="alert alert-success text-center" role="alert">
+        Votre paiement a été effectué avec succès !
+    </div>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="text-light" style="font-family: 'Pacifico', cursive;">Résumé de la commande</h2>
+            <ul class="list-group mb-4">
+                {% for plat in plats %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center" style="font-family: 'Pacifico', cursive;">
+                            {{ plat.name }}
+                        </div>
+                        <span style="font-family: 'Pacifico', cursive;">{{ plat.price }}€</span>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h4 class="text-light" style="font-family: 'Pacifico', cursive;">Total: {{ total }}€</h4>
+            <a href="{{ url_for('index') }}" class="btn btn-primary mb-5" style="font-family: 'Pacifico', cursive;">Retour à l'accueil</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

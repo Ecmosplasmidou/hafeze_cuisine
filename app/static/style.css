@@ -1,0 +1,26 @@
+body {
+    font-family: 'Merriweather', serif;
+}
+
+.fullscreen-bg {
+    background-image: url('/static/pics/DALL·E 2024-11-03 15.09.55 - A vibrant background image for a homepage of a food website selling Italian, Mauritian, and Indian dishes. The image should feature a warm and invitin.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh; /* Full viewport height */
+    width: 100vw;  /* Full viewport width */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+a, h1, h2, h3, p {
+    color: #d9534f;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-light mb-4">Votre Panier</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            {% if cart %}
+                <ul class="list-group mb-4">
+                    {% for item in cart %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center shadow-sm" style="border-radius: 15px;">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ url_for('static', filename='pics/' + item.image) }}" alt="{{ item.name }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px; border-radius: 10px;">
+                                <span class="font-weight-bold" style="font-family: 'Pacifico', cursive;">{{ item.name }}</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="font-weight-bold mx-5" style="font-family: 'Pacifico', cursive;">{{ item.price }}€</span>
+                                <a href="{{ url_for('remove_from_cart', plat_id=item.id) }}" class="btn btn-danger" style="font-family: 'Pacifico', cursive;">Supprimer</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <h4 class="text-right text-light">Total: <span>{{ total }}€</span></h4>
+                <div class="text-right">
+                    <a href="{{ url_for('checkout') }}" class="btn btn-success mb-5" style="font-family: 'Pacifico', cursive;">Procéder au paiement</a>
+                </div>
+            {% else %}
+                <p class="text-center text-light" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Votre panier est vide.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

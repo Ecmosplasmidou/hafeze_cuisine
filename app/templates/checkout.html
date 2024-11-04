@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-light mb-4">Paiement</h1>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2 class="text-light">Résumé de la commande</h2>
+            <ul class="list-group mb-4">
+                {% for item in session.cart %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center" style="font-family: 'Pacifico', cursive;">
+                            <img src="{{ url_for('static', filename='pics/' + item.image) }}" alt="{{ item.name }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover; margin-right: 10px;">
+                            {{ item.name }}
+                        </div>
+                        <span style="font-family: 'Pacifico', cursive;">{{ item.price }}€</span>
+                    </li>
+                {% endfor %}
+            </ul>
+            <h4 class="text-light">Total: {{ session.cart | sum(attribute='price') }}€</h4>
+            <form action="{{ url_for('create_checkout_session') }}" method="POST">
+                <button type="submit" class="btn btn-primary mb-5" style="font-family: 'Pacifico', cursive;">Procéder au paiement avec Stripe</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

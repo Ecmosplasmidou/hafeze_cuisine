@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-light mb-4 text-shadow">Nos plats</h1>
+    <div class="row">
+        {% for plat in plats %}
+            <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="card shadow-sm" style="border-radius: 15px;">
+                    <img src="{{ url_for('static', filename='pics/' + plat.image) }}" class="card-img-top" alt="{{ plat.name }}" style="border-top-left-radius: 15px; border-top-right-radius: 15px; height: 300px; object-fit: cover;">
+                    <div class="card-body" style="height: 200px;">
+                        <h5 class="card-title">{{ plat.name }}</h5>
+                        <p class="card-text">{{ plat.description }}</p>
+                        <p class="card-text"><strong>{{ plat.price }}€</strong></p>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            {% if plat.available %}
+                                <a href="{{ url_for('add_to_cart', plat_id=plat.id) }}" class="btn btn-primary btn-md">Ajouter au panier</a>
+                                <form action="{{ url_for('remove_from_cart', plat_id=plat.id) }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-md">Supprimer du panier</button>
+                                </form>
+                            {% else %}
+                                <span class="text-danger">Indisponible</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

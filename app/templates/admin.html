@@ -1,0 +1,49 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center text-light mb-4" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Ajouter un nouveau plat</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <div class="form-group text-light mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control") }}
+                    {% for error in form.name.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group text-light mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                    {{ form.description.label(class="form-label") }}
+                    {{ form.description(class="form-control") }}
+                    {% for error in form.description.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group text-light mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                    {{ form.price.label(class="form-label") }}
+                    {{ form.price(class="form-control") }}
+                    {% for error in form.price.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group text-light mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                    {{ form.image.label(class="form-label") }}
+                    {{ form.image(class="form-control-file") }}
+                    {% for error in form.image.errors %}
+                        <span class="text-danger">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                <div class="form-group text-light mb-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                    {{ form.available.label(class="form-check-label") }}
+                    {{ form.available(class="form-check-input") }}
+                </div>
+                <div class="form-group mb-3">
+                    {{ form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
